@@ -151,7 +151,10 @@ void RF24Mesh::removeDeadNodes(uint32_t maxTime){
 			if(nodeTime>lastTime){//it means millis() restarted from 0
 				addrList[i].lastTime=lastTime;
 			} else{
-				if(lastTime-nodeTime>maxTime) remove(addrList[i].nodeID);
+				if(lastTime-nodeTime>maxTime) {
+					//remove(addrList[i].nodeID);
+					addrList[i].address = 0;
+				}
 			}
 		}
 	}
